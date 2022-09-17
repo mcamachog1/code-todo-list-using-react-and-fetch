@@ -10,3 +10,15 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+body {
+    text-align: center;
+    font-size: 120%;
+  }
+  span {
+    margin: 5px;
+    font-size: 200%;
+  }
+  span:hover {
+    font-size: 250%;
+    cursor: pointer;
+  }
