@@ -1,6 +1,7 @@
 //import react into the bundle
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+
 
 // include your styles into the webpack bundle
 import "../styles/index.css";
@@ -13,7 +14,8 @@ const Home = () => {
 
   const HandleAdd = (e) => {
     if (e.key == "Enter" || e.type =="click") {
-      setTasks([...tasks, inputValue])
+      let newTask = {"label":inputValue, "done":false}
+      setTasks([...tasks, newTask])
       setInputValue("")
     }
   } 
@@ -26,9 +28,25 @@ const Home = () => {
         
       }
       setTasks(newTasks)
-    }
+  }
      
-    
+  useEffect(() => {
+		const getToDo = async () =>{
+			let response = await fetch("https://assets.breatheco.de/apis/fake/todos/user/maryvi",{
+				headers:{
+					"Content-Type":"application/json"
+				},
+				method:"GET",
+			})
+			let data = await response.json()
+			setTasks(data)
+		
+	}
+	getToDo()
+		
+	}, [])  
+  
+  
   return <div className="container" style={{width:'60%'}}>
     
     <div className="row justify-content-center"><p className="p-0 m-0 myfonttodo">To Do</p><p className="p-0 m-0 myfontlist">LIST</p>
@@ -48,7 +66,7 @@ const Home = () => {
         tasks.map((task,index)=>{
           return <ListGroup.Item key={index} className="align-self-start  ms-4 border-0 text-secondary">
             <i className="fa-solid fa-circle me-2"></i>
-            {task}
+            {task.label}
             <button onClick={() => handleDelete(index)}>Borrar</button>
           </ListGroup.Item>
         }
