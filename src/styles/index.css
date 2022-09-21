@@ -22,10 +22,10 @@ body {
     font-size: 250%;
     cursor: pointer;
   }
-  * {
+  /* * {
     border: 1px dashed red;
     min-height: 10px;
-  }
+  } */
   .myline {
     border: solid black 2px
   }

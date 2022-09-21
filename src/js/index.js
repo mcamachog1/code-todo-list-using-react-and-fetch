@@ -16,7 +16,18 @@ const Home = () => {
       setTasks([...tasks, inputValue])
       setInputValue("")
     }
-  }  
+  } 
+  const handleDelete = (index) => {
+      let newTasks=[]
+      for (const i in tasks) {
+        if (i != index) {
+          newTasks.push(tasks[i])
+        }
+        
+      }
+      setTasks(newTasks)
+    }
+     
     
   return <div className="container" style={{width:'60%'}}>
     
@@ -35,7 +46,11 @@ const Home = () => {
       <ListGroup>
       {
         tasks.map((task,index)=>{
-          return <ListGroup.Item key={index}><i class="fa-solid fa-circle"></i>{task}</ListGroup.Item>
+          return <ListGroup.Item key={index} className="align-self-start  ms-4 border-0 text-secondary">
+            <i className="fa-solid fa-circle me-2"></i>
+            {task}
+            <button onClick={() => handleDelete(index)}>Borrar</button>
+          </ListGroup.Item>
         }
       )}
       </ListGroup>
