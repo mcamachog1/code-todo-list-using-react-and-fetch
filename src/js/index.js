@@ -4,19 +4,46 @@ import ReactDOM from "react-dom";
 
 // include your styles into the webpack bundle
 import "../styles/index.css";
+import ListGroup from 'react-bootstrap/ListGroup';
 
 const Home = () => {
-  const [inputValue, setInputValue ] = React.useState('');
+
+  const [inputValue, setInputValue ] = useState('');
+  const [tasks, setTasks ] = useState([]);
+
+  const HandleAdd = (e) => {
+    if (e.key == "Enter" || e.type =="click") {
+      setTasks([...tasks, inputValue])
+      setInputValue("")
+    }
+  }  
     
-  const validateInput = () => {
-    if(inputValue === "") alert("The input cannot be empty");
-    else alert("All perfect!");
-  };
-  return <div>
-      <input type="text" onChange={(e) => {
-      return setInputValue(e.target.value);
-    }} value={inputValue} />
-      <button onClick={validateInput}>Click to validate empty</button>
+  return <div className="container" style={{width:'60%'}}>
+    
+    <div className="row justify-content-center"><p className="p-0 m-0 myfonttodo">To Do</p><p className="p-0 m-0 myfontlist">LIST</p>
+      <div className="myline mb-2"></div>
+    </div>
+    <div className="row d-flex justify-content-center">
+      <input className="col-7 me-2"
+          value={inputValue} 
+          onChange= {(event)=>setInputValue(event.target.value)} 
+          type="text" 
+          onKeyDown={HandleAdd}>
+      </input>
+
+      <button className="col-4 mybutton" onClick={HandleAdd}>Añadir</button>
+      <ListGroup>
+      {
+        tasks.map((task,index)=>{
+          return <ListGroup.Item key={index}><i class="fa-solid fa-circle"></i>{task}</ListGroup.Item>
+        }
+      )}
+      </ListGroup>
+      <div className="myline mb-2 mt-2"></div>
+      </div>
+    <div className="row d-flex justify-content-center myfontfooter fw-normal">Hecho en el curso de FrontEnd Development de 4Geeks</div>
+               
+    
   </div>;
 };
 

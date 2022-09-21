@@ -22,3 +22,27 @@ body {
     font-size: 250%;
     cursor: pointer;
   }
+  * {
+    border: 1px dashed red;
+    min-height: 10px;
+  }
+  .myline {
+    border: solid black 2px
+  }
+
+  .mybutton {
+    width:'30%';
+  }
+  .myfonttodo {
+      font-family: 'Tangerine', serif;
+      font-size: 48px;
+  }
+  .myfontlist {
+    font-family: 'Chango', serif;
+    font-size: 36px;
+}
+  .myfontfooter {
+  font-family: 'Tangerine', serif;
+  font-size: 36px;
+  color: gray;
+}
