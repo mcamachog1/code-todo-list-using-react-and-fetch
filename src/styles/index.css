@@ -32,6 +32,16 @@ body {
 
   .mybutton {
     width:'30%';
+
+    font-weight: bold;
+    /* border-color: white; */
+  }
+
+  .mybutton:hover {
+    color: white;
+    background-color:  blue;
+    font-weight: bold;
+    /* border-color: white; */
   }
   .myfonttodo {
       font-family: 'Tangerine', serif;

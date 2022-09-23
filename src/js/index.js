@@ -15,8 +15,10 @@ const Home = () => {
   const HandleAdd = (e) => {
     if (e.key == "Enter" || e.type =="click") {
       let newTask = {"label":inputValue, "done":false}
+      setToDo([...tasks, newTask])
       setTasks([...tasks, newTask])
       setInputValue("")
+
     }
   } 
   const handleDelete = (index) => {
@@ -27,6 +29,7 @@ const Home = () => {
         }
         
       }
+      setToDo(newTasks)
       setTasks(newTasks)
   }
      
@@ -43,10 +46,21 @@ const Home = () => {
 		
 	}
 	getToDo()
-		
 	}, [])  
-  
-  
+
+  const setToDo = async (tasklist) =>{
+    let response = await fetch("https://assets.breatheco.de/apis/fake/todos/user/maryvi",{
+      headers:{
+        "Content-Type":"application/json"
+      },
+      method:"PUT",
+      body: JSON.stringify(tasklist)
+    })
+    let data = await response.json()
+    console.log(data)
+  }
+
+   
   return <div className="container" style={{width:'60%'}}>
     
     <div className="row justify-content-center"><p className="p-0 m-0 myfonttodo">To Do</p><p className="p-0 m-0 myfontlist">LIST</p>
@@ -64,10 +78,15 @@ const Home = () => {
       <ListGroup>
       {
         tasks.map((task,index)=>{
-          return <ListGroup.Item key={index} className="align-self-start  ms-4 border-0 text-secondary">
+          return <ListGroup.Item 
+            key={index} 
+            className=" d-flex align-self-start  ms-4 border-0 text-secondary">
+
             <i className="fa-solid fa-circle me-2"></i>
             {task.label}
-            <button onClick={() => handleDelete(index)}>Borrar</button>
+            {/* <i onClick={() => handleDelete(index)}  className="fa-solid fa-circle me-2"></i> */}
+            <button onClick={() => handleDelete(index)} className="ms-auto">Borrar</button>
+          
           </ListGroup.Item>
         }
       )}
