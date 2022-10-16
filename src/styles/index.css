@@ -30,18 +30,16 @@ body {
     border: solid black 2px
   }
 
-  .mybutton {
+  /* .mybutton {
     width:'30%';
 
     font-weight: bold;
-    /* border-color: white; */
-  }
+    border-color: white;
+  } */
 
-  .mybutton:hover {
-    color: white;
+  .btn:hover {
     background-color:  blue;
     font-weight: bold;
-    /* border-color: white; */
   }
   .myfonttodo {
       font-family: 'Tangerine', serif;
@@ -56,3 +54,9 @@ body {
   font-size: 36px;
   color: gray;
 }
+
+/* * {
+  border: 1px dashed red;
+  min-height: 10px;
+} */
+
